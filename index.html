@@ -3,140 +3,178 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jun Park | Personal Website</title>
+    <title>Jun Park | Music & Business</title>
 
     <style>
-        /* 🎨 1. 정의된 컬러 팔레트 및 변수 */
+        /* 1. DESIGN SYSTEM (Typography, Color, Spacing) */
         :root {
-            --primary: #2563eb;       /* Primary: Royal Blue */
-            --primary-hover: #1d4ed8;
-            --accent: #06b6d4;        /* Accent: Cyan */
-            --bg: #f8fafc;            /* Neutral Background */
-            --text: #0f172a;          /* Deep Navy Text */
-            --muted: #64748b;         /* Muted Text */
-            --card: #ffffff;
+            /* Colors */
+            --primary: #4f46e5;        /* Indigo */
+            --primary-hover: #4338ca;
+            --accent: #0ea5e9;         /* Sky Blue */
+            --bg: #ffffff;
+            --surface: #f8fafc;        /* Light Gray for cards */
+            --text-main: #1e293b;
+            --text-muted: #64748b;
             --border: #e2e8f0;
+
+            /* Spacing Scale */
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 32px;
+            --space-xl: 64px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background-color: var(--bg);
-            color: var(--text);
+            color: var(--text-main);
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
+        /* 2. LAYOUT CLARITY (Container & Sections) */
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 60px 24px;
+            padding: var(--space-xl) var(--space-md);
         }
 
-        /* Typography */
+        section {
+            margin-bottom: var(--space-xl);
+        }
+
+        /* Typography Scale */
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.025em;
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            margin-bottom: var(--space-sm);
+            line-height: 1.1;
         }
 
         h2 {
             font-size: 1.5rem;
-            margin-top: 3rem;
-            margin-bottom: 1.25rem;
-            color: var(--primary); /* 제목에 포인트 컬러 적용 */
-            border-left: 4px solid var(--accent); /* Accent 컬러로 강조 */
-            padding-left: 12px;
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--border);
         }
 
         p {
-            font-size: 1.1rem;
+            font-size: 1.125rem;
+            margin-bottom: var(--space-md);
             color: #334155;
-            margin-bottom: 1.5rem;
         }
 
-        .bio {
-            font-size: 1.2rem;
-            color: var(--muted);
-            margin-bottom: 2rem;
+        .bio-lead {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: var(--space-lg);
         }
 
-        /* 카드 스타일 (Purpose & Portfolio) */
-        .section-card {
-            background: var(--card);
-            padding: 24px;
-            margin-bottom: 20px;
+        /* Card Styles */
+        .card {
+            background: var(--surface);
+            padding: var(--space-lg);
             border-radius: 16px;
             border: 1px solid var(--border);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            margin-bottom: var(--space-md);
         }
 
-        /* 🔥 2. CTA 버튼 디자인 개선 (Button/CTA Polish) */
+        .card strong {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+
+        /* 3. CTA POLISH (Professional & Accessible) */
         .cta-button {
             display: inline-block;
-            background: var(--primary);
-            color: white;
+            background-color: var(--primary);
+            color: #ffffff;
             padding: 14px 28px;
-            border-radius: 12px; /* 현대적인 둥근 모서리 */
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.05rem;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
             border: 2px solid transparent;
         }
 
         .cta-button:hover {
-            background: var(--primary-hover);
-            transform: translateY(-2px); /* 호버 시 위로 살짝 이동 */
-            box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.4);
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
         }
 
-        .cta-button:active {
-            transform: translateY(0);
+        /* Focus state for accessibility */
+        .cta-button:focus {
+            outline: none;
+            border-color: var(--bg);
+            box-shadow: 0 0 0 4px var(--accent);
         }
 
-        /* 토글 섹션 스타일 */
-        .toggle-heading {
-            cursor: pointer;
-            padding: 15px;
-            background: #f1f5f9;
+        /* Interactive Toggle */
+        .toggle-box {
+            background: white;
+            border: 2px solid var(--border);
             border-radius: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background 0.2s;
+            padding: var(--space-md);
+            cursor: pointer;
+            transition: border-color 0.2s;
         }
 
-        .toggle-heading:hover {
-            background: #e2e8f0;
+        .toggle-box:hover {
+            border-color: var(--primary);
         }
 
         .toggle-content {
             display: none;
-            padding: 20px;
-            margin-top: 10px;
-            border-radius: 12px;
-            background: white;
-            border: 1px solid var(--border);
+            padding-top: var(--space-md);
+            border-top: 1px solid var(--border);
+            margin-top: var(--space-md);
         }
 
         .toggle-content.open {
             display: block;
-            animation: fadeIn 0.3s ease;
+            animation: slideIn 0.3s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-5px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* 4. MOBILE AUDIT (Responsive fixes) */
+        @media (max-width: 640px) {
+            h1 { font-size: 2.25rem; }
+            .container { padding: var(--space-lg) var(--space-md); }
+            .cta-button { width: 100%; text-align: center; } /* Mobile full-width button */
+            section { margin-bottom: var(--space-lg); }
+        }
+
         footer {
-            margin-top: 5rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
             text-align: center;
-            font-size: 0.9rem;
-            color: var(--muted);
+            padding-top: var(--space-xl);
+            color: var(--text-muted);
+            font-size: 0.875rem;
         }
     </style>
 </head>
@@ -145,53 +183,50 @@
     <div class="container">
         <header>
             <h1>Jun Park</h1>
-            <p class="bio">
-                Berklee College of Music student focusing on Music & Business. <br>
-                Drummer, Entrepreneur, and Music Industry Explorer.
+            <p class="bio-lead">
+                Berklee College of Music student. Drummer. <br>
+                Exploring the future of music networking and business.
             </p>
         </header>
 
-        <h2>Purpose</h2>
-        <div class="section-card">
-            <p>
-                I am on a mission to help musicians connect with the right people—band members, collaborators, and teachers. 
-                By reducing the noise and frustration of networking, I empower artists to focus on what matters most: <strong>creating music.</strong>
-            </p>
-        </div>
+        <section>
+            <h2>Purpose</h2>
+            <div class="card">
+                <p>
+                    I aim to bridge the gap between musicians and opportunities. By creating tools that simplify networking, I help artists focus on their craft rather than the struggle of finding collaborators.
+                </p>
+            </div>
+        </section>
 
-        <h2>Portfolio</h2>
-        <div class="section-card">
-            <strong>Republic of Korea Navy Band</strong>
-            <p style="margin-top: 8px;">
-                As a drummer in the ROK Navy Band, I performed at major military events and national ceremonies, 
-                gaining unique discipline and leadership skills through professional performance.
-            </p>
-        </div>
+        <section>
+            <h2>Portfolio</h2>
+            <div class="card">
+                <strong>Republic of Korea Navy Band</strong>
+                <p>Served as a drummer, performing in national ceremonies and official concerts. Developed a professional mindset and a deep understanding of ensemble performance.</p>
+            </div>
+        </section>
 
-        <h2>What I'm Building</h2>
-        <div class="section-card" style="border: 2px solid var(--accent);">
-            <p>
-                I'm developing a platform that simplifies music networking. It’s built for musicians who are tired 
-                of scattered searches and want a streamlined way to build their creative team.
-            </p>
-            <p style="margin-top: 25px;">
-                <a href="mailto:jpark60@berklee.edu" class="cta-button">Get in Touch / Collaborations</a>
-            </p>
-        </div>
+        <section>
+            <h2>What I'm Building</h2>
+            <div class="card" style="border-left: 6px solid var(--primary);">
+                <p>A streamlined platform for musicians to find band members, teachers, and creative partners without the clutter of traditional social media.</p>
+                <div style="margin-top: 24px;">
+                    <a href="mailto:jpark60@berklee.edu" class="cta-button">Collaborate with Me</a>
+                </div>
+            </div>
+        </section>
 
-        <div class="toggle-heading" onclick="toggleSection()">
-            <strong>My Core Values</strong>
-            <span>▼</span>
-        </div>
-        <div class="toggle-content" id="careSection">
-            <p>
-                I value efficiency, sustainable creative careers, and the power of simple, effective tools. 
-                I believe that technology should serve the artist, not the other way around.
-            </p>
-        </div>
+        <section>
+            <div class="toggle-box" onclick="toggleSection()">
+                <strong>💡 My Core Values (Click to expand)</strong>
+                <div class="toggle-content" id="careSection">
+                    <p>I believe in efficiency, community-driven growth, and the power of music to build sustainable business models for independent artists.</p>
+                </div>
+            </div>
+        </section>
 
         <footer>
-            © 2026 Jun Park. Built with Passion in Boston.
+            © 2026 Jun Park · Boston, MA
         </footer>
     </div>
 
